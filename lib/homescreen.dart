@@ -12,11 +12,12 @@ class _HomeScreenState extends State<HomeScreen>
   int rightDiceNumber = 1;
   late AnimationController _controller;
   late CurvedAnimation animation;
-  int color = 200;
+  late int total;
 
   @override
   void initState() {
     super.initState();
+    total = leftDiceNumber + rightDiceNumber;
     animate();
   }
 
@@ -28,42 +29,31 @@ class _HomeScreenState extends State<HomeScreen>
 
   animate() {
     _controller = AnimationController(
-      duration: Duration(milliseconds: 1000),
+      duration: Duration(milliseconds: 2000),
       vsync: this,
     );
-    animation = CurvedAnimation(parent: _controller, curve: Curves.bounceOut);
+    animation =
+        CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic);
     animation.addListener(() {
       setState(() {});
-      // print(_controller.value);
     });
-    /* _controller.addListener(() {
-      print(_controller.value);
-    }); */
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         setState(() {
           leftDiceNumber = Random().nextInt(6) + 1;
           rightDiceNumber = Random().nextInt(6) + 1;
-          color = (color * animation.value).toInt();
         });
-        // print('Completed');
-        _controller.reverse();
+        _controller.reverse().then((value) => {
+              setState(() {
+                total = leftDiceNumber + rightDiceNumber;
+              })
+            });
       }
     });
-    /* _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        print('Completed');
-        _controller.reverse();
-      }
-    }); */
   }
 
   void roll() {
     _controller.forward();
-    /* setState(() {
-      leftDiceNumber = Random().nextInt(6) + 1;
-      rightDiceNumber = Random().nextInt(6) + 1;
-    }); */
   }
 
   Widget build(BuildContext context) {
@@ -122,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
-                  'Total ${leftDiceNumber + rightDiceNumber}',
+                  'Total $total',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
