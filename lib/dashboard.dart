@@ -15,6 +15,9 @@ class DashboardPage extends StatelessWidget {
     var width = SizeConfig.getWidth(context);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Bank Expenses'),
+      ),
       body: Container(
         color: AppColors.primaryWhite,
         child: Column(
@@ -24,7 +27,11 @@ class DashboardPage extends StatelessWidget {
               child: CustomAppBar(),
             ),
             Expanded(
-              child: CardWidget(),
+              flex: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: CardWidget(),
+              ),
             ),
             Expanded(child: Text('data')),
           ],

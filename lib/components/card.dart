@@ -13,7 +13,7 @@ class BankCard extends StatelessWidget {
 
     return Container(
       padding:
-          EdgeInsets.symmetric(horizontal: width / 20, vertical: height / 15),
+          EdgeInsets.symmetric(horizontal: width / 70, vertical: height / 70),
       child: Stack(
         children: <Widget>[
           Align(
@@ -29,7 +29,7 @@ class BankCard extends StatelessWidget {
           Align(
               alignment: Alignment.bottomLeft,
               child: Container(
-                height: height / 14,
+                height: height / 10,
                 width: width / 2,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

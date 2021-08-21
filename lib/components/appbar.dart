@@ -16,7 +16,8 @@ class CustomAppBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: width / 20),
+        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+        // margin: EdgeInsets.symmetric(horizontal: width / 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[

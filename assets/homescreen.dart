@@ -59,7 +59,7 @@ class _HomeScreenState extends State<DiceScreen>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
+          // centerTitle: true,
           title: Text('Rollling Dice'),
         ),
         body: Center(
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<DiceScreen>
                           child: Image(
                               height: 200 - (animation.value) * 200,
                               image: AssetImage(
-                                  'assets/dice-png-$leftDiceNumber.png')),
+                                  'images/dice-png-$leftDiceNumber.png')),
                         )),
                   )),
                   Expanded(
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<DiceScreen>
                           child: Image(
                               height: 200 - (animation.value) * 200,
                               image: AssetImage(
-                                  'assets/dice-png-$rightDiceNumber.png')),
+                                  'images/dice-png-$rightDiceNumber.png')),
                         )),
                   )),
                 ],
