@@ -1,11 +1,23 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/secons-screen.dart';
+import 'package:provider/provider.dart';
 import 'layoutpractice.dart';
 import 'dashboard.dart';
 import 'homescreen.dart';
+import './screens/counter-screen.dart';
+import './screens/cred//cred.dart';
+import './screens/secons-screen.dart';
+import 'package:flutter_application_1/providers/counter-provider.dart';
+import 'package:flutter_application_1/providers/shopping-cart-provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (_) => Counter(),
+      ),
+      ChangeNotifierProvider(create: (_) => Shoppingcart()),
+    ], child: MyApp()));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -41,6 +53,30 @@ class HomeScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) {
                   return DiceScreen();
+                }),
+              );
+            },
+          )),
+          Center(
+              child: TextButton(
+            child: Text('Counter-Screen'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return CredApp();
+                }),
+              );
+            },
+          )),
+          Center(
+              child: TextButton(
+            child: Text('Shopping-Screen'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return ShoppingScreen();
                 }),
               );
             },
@@ -92,15 +128,30 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-          child: TextButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        child: Text('POP'),
-      )),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            isScrollable: true,
+            indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(50), // Creates border
+                color: Colors.greenAccent),
+            tabs: [
+              Tab(icon: Icon(Icons.flight)),
+              Tab(icon: Icon(Icons.directions_transit)),
+              Tab(icon: Icon(Icons.directions_car)),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            Icon(Icons.flight, size: 350),
+            CredApp(),
+            Icon(Icons.directions_car, size: 350),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -41,7 +41,7 @@ class _CardWidgetState extends State<CardWidget> {
                       decoration: BoxDecoration(
                           boxShadow: AppColors.neumorpShadow,
                           color: AppColors.primaryWhite,
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(60)),
                       margin: EdgeInsets.symmetric(
                           horizontal: width / 30, vertical: height / 100),
                       child: Stack(
